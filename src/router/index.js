@@ -12,33 +12,28 @@ const routes = [
   },
   {
     path: '/my',
-    name: 'Playlists',
+    name: 'My',
     component: () => import('@/views/My')
   },
   {
-    path: '/playlist/:id',
-    name: 'Playlist',
-    component: () => import('@/views/Playlist')
+    path: '/friend',
+    name: 'Friend',
+    component: () => import('@/views/Friend')
   },
   {
-    path: '/songs',
-    name: 'Songs',
-    component: () => import('@/views/Songs')
+    path: '/store',
+    name: 'Store',
+    component: () => import('@/views/Store')
   },
   {
-    path: '/mvs',
-    name: 'Mvs',
-    component: () => import('@/views/Mvs')
+    path: '/musician',
+    name: 'Musician',
+    component: () => import('@/views/Musician')
   },
   {
-    path: '/result',
-    name: 'Result',
-    component: () => import('@/views/Result')
-  },
-  {
-    path: '/test',
-    name: 'Test',
-    component: () => import('@/views/Test')
+    path: '/download',
+    name: 'Download',
+    component: () => import('@/views/Download')
   }
 ]
 

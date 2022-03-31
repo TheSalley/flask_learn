@@ -19,5 +19,6 @@ export default {
   padding: 0;
   text-decoration: none;
   list-style-type: none;
+  box-sizing: border-box;
 }
 </style>
