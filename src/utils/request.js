@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const request = axios.create({
-    baseURL: 'http://localhost:9000'
+    // baseURL: 'http://localhost:9000',
+    baseURL: 'https://autumnfish.cn/'
 })
 
 // 请求拦截器

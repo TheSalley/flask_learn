@@ -3,13 +3,36 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    redirect: '/discovery',
-  },
-  {
-    path: '/discovery',
-    name: 'Discovery',
-    component: () => import('@/views/Discovery')
-  },
+    alias: '/discovery',
+    component: () => import('@/views/Home'),
+    children: [
+      {
+        path: '',   
+        component: () => import('@/views/Discovery'),
+      },
+      {
+        path: 'toplist',
+        component: ()=> import('@/views/Rank')
+      },
+      {
+        path: 'playlist',
+        component: ()=> import('@/views/PlayList')
+      },
+      {
+        path: 'djradio',
+        component: ()=> import('@/views/Radio')
+      },
+      {
+        path: 'artist',
+        component: ()=> import('@/views/Artist')
+      },
+      {
+        path: 'album',
+        component: ()=> import('@/views/Album')
+      },
+      
+    ]
+  }, 
   {
     path: '/my',
     name: 'My',
@@ -33,6 +56,11 @@ const routes = [
   {
     path: '/download',
     name: 'Download',
+    component: () => import('@/views/Download')
+  },
+  {
+    path: '/search',
+    name: 'Search',
     component: () => import('@/views/Download')
   }
 ]

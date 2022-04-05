@@ -6,3 +6,10 @@ export const getBannerList = () => {
     url: '/banner'
   })
 }
+
+// 获取热门推荐歌单
+export const getHotRecommend = () => {
+  return request({
+    url: '/top/playlist?limit=8'
+  })
+}

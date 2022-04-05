@@ -2,14 +2,17 @@
   <div class="discovery-container">
     <NavHeader></NavHeader>
     <router-view></router-view>
+    <Footer></Footer>
   </div>
 </template>
 <script>
 import NavHeader from '@/components/common/NavHeader.vue'
+import Footer from '@/components/common/Footer.vue'
 export default {
   name: 'App',
   components: {
-    NavHeader
+    NavHeader,
+    Footer
   }
 };
 </script>
@@ -20,5 +23,10 @@ export default {
   text-decoration: none;
   list-style-type: none;
   box-sizing: border-box;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+#app {
+  overflow-y: scroll;
 }
 </style>

@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <!-- {{banners[0].imageUrl}} -->
-    <el-carousel :interval="4000" >
+  <div class="container">
+    <el-carousel :interval="4000" trigger="click" height="285px">
       <el-carousel-item v-for="(b, index) in banners" :key="index">
         <img :src="b.imageUrl" alt />
       </el-carousel-item>
@@ -9,22 +8,30 @@
   </div>
 </template>
 <script>
-import { reactive, onBeforeMount, toRefs, onMounted } from "vue";
+/**
+ * @banners 轮播图列表
+ */
+import { ref, reactive, toRefs, onMounted } from "vue";
 import { getBannerList } from "@/api/discovery";
 export default {
   name: "Banner",
+  components: {},
   setup() {
-    let banners = reactive([]);
-
+    let banners = reactive([
+      {
+        imageUrl:
+          "http://p1.music.126.net/U-klDW80305UEuVErdMpSw==/109951167239238686.jpg?imageView&quality=89",
+      },
+    ]);
     const getData = async () => {
       let { banners: res } = await getBannerList();
-      banners.push(...res);
+      banners.push(...res.splice(1));
     };
-    getData();
-    console.log(banners);
+    onMounted(() => {
+      getData();
+    });
     return {
       banners,
-      getData,
     };
   },
 };
@@ -32,12 +39,17 @@ export default {
 
 
 <style lang="scss" scoped>
-.el-carousel {
-  width: 730px;
-  height: 283px;
-  image {
-    width: 100%;
-    height: 100%;
+.container {
+  height: 285px;
+  .el-carousel {
+    width: 982px;
+    height: 285px;
+    margin: 0 auto;
+    img {
+      display: block;
+      width: 780px;
+      height: 285px;
+    }
   }
 }
 </style>
