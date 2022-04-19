@@ -62,6 +62,11 @@ const routes = [
     path: '/search',
     name: 'Search',
     component: () => import('@/views/Download')
+  },
+  {
+    path: '/playlist',
+    name: 'PlayList',
+    component: () => import('@/views/RecommendPlayList')
   }
 ]
 

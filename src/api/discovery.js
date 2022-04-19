@@ -10,6 +10,13 @@ export const getBannerList = () => {
 // 获取热门推荐歌单
 export const getHotRecommend = () => {
   return request({
-    url: '/top/playlist?limit=8'
+    url: '/personalized?limit=8'
+  })
+}
+
+// 获取新碟上架数据
+export function getNewAlbums() {
+  return request({
+    url: '/album/newest'
   })
 }

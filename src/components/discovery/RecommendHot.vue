@@ -2,8 +2,8 @@
   <div class="container">
     <ul>
       <li v-for="item in hotList" :key="item.id">
-        <div class="imgBox">
-          <img :src="item.coverImgUrl" alt="" />
+        <div class="imgBox" @click="goRecommendPlayList(item.id)">
+          <img :src="item.picUrl" alt="" />
         </div>
         <p>{{ item.name }}</p>
       </li>
@@ -12,20 +12,32 @@
 </template>
 <script>
 /**
- *@hotList 热门推荐列表
+ * @param {array} hotList - 热门推荐列表
  */
 import { getHotRecommend } from "@/api/discovery";
 import { onMounted, reactive } from "vue";
+import { useRouter } from 'vue-router'
 export default {
   setup() {
     let hotList = reactive([]);
+    const router = useRouter()
     onMounted(async () => {
-      const { playlists: res } = await getHotRecommend();
-      // console.log(res);
+      const { result: res } = await getHotRecommend();
+      //console.log(res);
       hotList.push(...res);
     });
+
+    function goRecommendPlayList(id){
+      router.push({
+        name: 'PlayList',
+        query: {
+          id
+        }
+      })
+    }
     return {
       hotList,
+      goRecommendPlayList
     };
   },
 };

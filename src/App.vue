@@ -26,7 +26,4 @@ export default {
   user-select: none;
   -webkit-user-drag: none;
 }
-#app {
-  overflow-y: scroll;
-}
 </style>
