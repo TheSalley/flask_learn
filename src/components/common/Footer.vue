@@ -1,13 +1,23 @@
 <template>
   <footer>
     <div class="container">
-      <audio ref="audioRef" controls autoplay loop></audio>
+      <audio ref="audioRef" controls autoplay loop :src="url"></audio>
     </div>
   </footer>
 </template>
 <script>
+import {ref} from 'vue'
+import emitter from '@/utils/mitt'
 export default {
-    
+    setup(){
+      const url = ref('')
+      emitter.on('transfer',(val)=>{
+        url.value = val
+      })
+      return {
+        url
+      }
+    }
 }
 </script>
 <style lang="scss" scoped>

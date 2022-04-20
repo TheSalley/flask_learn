@@ -14,9 +14,25 @@ export const getHotRecommend = () => {
   })
 }
 
+// 获取热门推荐歌单详情
+export const getHotRecommendDetail = (id) => {
+  return request({
+    url: `/playlist/detail?id=${id}`
+  })
+}
+
 // 获取新碟上架数据
 export function getNewAlbums() {
   return request({
     url: '/album/newest'
   })
 }
+
+// 播放歌曲
+export function getSongUrl(id) {
+  return request({
+    url: `/song/url?id=${id}`
+  })
+}
+
+
