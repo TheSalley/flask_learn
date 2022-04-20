@@ -1,7 +1,9 @@
 <template>
-  <div class="discovery-container">
+  <div class="containerBox">
     <NavHeader></NavHeader>
-    <router-view></router-view>
+    <div class="mainBox">
+      <router-view></router-view>
+    </div>   
     <Footer></Footer>
   </div>
 </template>
@@ -16,7 +18,7 @@ export default {
   }
 };
 </script>
-<style lang="css">
+<style lang="scss">
 * {
   margin: 0;
   padding: 0;
@@ -25,5 +27,11 @@ export default {
   box-sizing: border-box;
   user-select: none;
   -webkit-user-drag: none;
+}
+.mainBox{
+  width: 980px;
+  border: 1px solid #d3d3d3;
+  border-top: 0;
+  margin: 0 auto;
 }
 </style>

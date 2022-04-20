@@ -30,7 +30,11 @@ const routes = [
         path: 'album',
         component: ()=> import('@/views/Album')
       },
-      
+      {
+        path: '/playlist',
+        name: 'PlayList',
+        component: () => import('@/views/RecommendPlayList')
+      }
     ]
   }, 
   {
@@ -63,11 +67,7 @@ const routes = [
     name: 'Search',
     component: () => import('@/views/Download')
   },
-  {
-    path: '/playlist',
-    name: 'PlayList',
-    component: () => import('@/views/RecommendPlayList')
-  }
+
 ]
 
 const router = createRouter({

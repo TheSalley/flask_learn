@@ -49,12 +49,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 main {
-  width: 980px;
-  border: 1px solid #d3d3d3;
-  margin: 0 auto;
-  .leftBox {
-    width: 729px;
-    padding: 20px 20px 40px;
-  }
+  
 }
 </style>

@@ -4,49 +4,52 @@
       <div class="container">
         <div class="logo">
           <img src="@/assets/logo.png" alt="" class="logoImg" />
+          <span class="title">Music</span>
         </div>
         <!-- 一级路由 -->
         <ul class="list">
           <li v-for="item in listArr" :key="item.id">
             <router-link :to="item.path" v-slot="{ isActive }">
-              <div :class="[isActive && 'active']">
+              <div :class="[isActive && 'active']" class="firstRouter">
                 <em>{{ item.name }}</em>
                 <sub :class="[isActive && 'cor']"></sub>
               </div>
             </router-link>
           </li>
         </ul>
-        <div class="search"></div>
+        <div class="search">
+          <div class="inputBox">
+            <input type="text" placeholder="音乐/视频/电台/用户"/>
+          </div>
+          <span class="createrCenter">创作者中心</span>
+          <span class="login">登录</span>
+        </div>
       </div>
     </div>
-      <!-- 二级路由 -->
-      <div class="nav" :style="{ height: isShow ? ' 35px' : '10px' }">
-        <ul :class="['list']">
-          <router-link
-            :to="item.path"
-            v-for="item in listArr[0].children"
-            :key="item.id"
-            v-slot="{ isExactActive, href }"
-          >
-            <li>
-              <em
-                :class="[
-                  isExactActive && 'active',
-                  href === '/discovery' && isRoute,
-                ]"
-                >{{ item.name }}</em
-              >
-            </li>
-          </router-link>
-        </ul>
-      </div>
+    <!-- 二级路由 -->
+    <div class="nav" :style="{ height: isShow ? ' 35px' : '6px' }">
+      <ul :class="['list']">
+        <router-link
+          :to="item.path"
+          v-for="item in listArr[0].children"
+          :key="item.id"
+          v-slot="{ isExactActive, href }"
+        >
+          <li>
+            <em :class="[isExactActive && 'active', href === isRoute]">{{
+              item.name
+            }}</em>
+          </li>
+        </router-link>
+      </ul>
+    </div>
   </div>
 </template>
 <script>
 /**
- * @listArr 头部导航栏数据
- * @isRoute 计算属性控制第一个二级路由默认地高亮
- * @isShow 计算属性控制二级路由的显隐
+ * @param {array} listArr 头部导航栏数据
+ * @param {boolean} isRoute 计算属性控制第一个二级路由默认地高亮
+ * @param {boolean} isShow 计算属性控制二级路由的显隐
  */
 import { ref, reactive, toRefs, computed } from "vue";
 import { useRoute } from "vue-router";
@@ -125,7 +128,7 @@ export default {
       return route.path === "/discovery" || route.path === "/" ? "active" : "";
     });
     let isShow = computed(() => {
-      return route.path.includes("/discovery") || route.path === "/"
+      return route.path.includes("/discovery") || route.path === "/" || route.path.includes("/playlist")
         ? true
         : false;
     });
@@ -156,6 +159,11 @@ export default {
       .logoImg {
         width: 40px;
       }
+      .title {
+        color: white;
+        font-size: 25px;
+        font-style: italic;
+      }
     }
     .list {
       display: flex;
@@ -174,6 +182,57 @@ export default {
         }
       }
     }
+    .search {
+      display: flex;
+      margin-top: 19px;
+      margin-left: auto;
+      .inputBox {
+        width: 158px;
+        height: 32px;
+        border-radius: 32px;
+        display: flex;
+        align-items: center;
+        background: url('~@/assets/topbar.png') no-repeat 0 -99px;
+        background-color: #fff;
+        input {
+          border: none;
+          outline: none;
+          width: 95%;
+          background: transparent;
+          color: #333;
+          line-height: 16px;
+          cursor: text;
+          font-size: 12px;
+          margin-left: 25px;
+        }
+      }
+      .createrCenter {
+        width: 90px;
+        height: 32px;
+        color: #ccc;
+        border-radius: 20px;
+        border: 1px solid #4F4F4F;
+        font-size: 12px;
+        line-height: 32px;
+        text-align: center;
+        margin-left: 12px;
+        margin-right: 20px;
+        cursor: pointer;
+        &:hover {
+          border-color: white;
+        }
+      }
+      .login {
+        font-size: 12px;
+        color: rgba(110, 103, 103, 0.85);
+        line-height: 32px;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+    }
   }
   .active {
     background-color: #000;
@@ -190,6 +249,9 @@ export default {
       border: 7px solid transparent;
       border-bottom-color: #c20c0c;
     }
+  }
+  .firstRouter:hover {
+    background-color: #000;
   }
 }
 
@@ -212,6 +274,9 @@ export default {
         border-radius: 20px;
         font-size: 12px;
         font-style: normal;
+        &:hover {
+          background: #9b0909;
+        }
       }
       .active {
         background: #9b0909;
