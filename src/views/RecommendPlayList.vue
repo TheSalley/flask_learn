@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-import { getHotRecommendDetail, getSongUrl } from "@/api/discovery";
+import { getHotRecommendDetail, getSongUrl } from "@/api/http";
 import { reactive, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import emitter from '@/utils/mitt'

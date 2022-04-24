@@ -35,4 +35,17 @@ export function getSongUrl(id) {
   })
 }
 
+// 排行榜单
+export function getRankList(){
+  return request({
+    url: 'toplist'
+  })
+}
+
+// 排行榜详情
+export function getRankListDetail(id){
+  return request({
+    url: `/playlist/detail?id=${id}`
+  })
+}
 

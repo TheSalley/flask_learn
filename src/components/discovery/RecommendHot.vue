@@ -14,7 +14,7 @@
 /**
  * @param {array} hotList - 热门推荐列表
  */
-import { getHotRecommend } from "@/api/discovery";
+import { getHotRecommend } from "@/api/http";
 import { onMounted, reactive } from "vue";
 import { useRouter } from 'vue-router'
 export default {

@@ -12,7 +12,7 @@
  * @banners 轮播图列表
  */
 import { ref, reactive, toRefs, onMounted } from "vue";
-import { getBannerList } from "@/api/discovery";
+import { getBannerList } from "@/api/http";
 export default {
   name: "Banner",
   components: {},

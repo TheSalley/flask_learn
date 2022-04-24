@@ -24,7 +24,7 @@
 /**
  *@newList 新碟上架列表
  */
-import { getNewAlbums } from "@/api/discovery";
+import { getNewAlbums } from "@/api/http";
 import { onMounted, reactive } from "vue";
 export default {
   setup() {
@@ -33,7 +33,7 @@ export default {
       let { albums: res } = await getNewAlbums();
       res = res.splice(0, 10);
       newList.push(...res);
-      console.log(res);
+      //console.log(res);
     });
     return {
       newList,
