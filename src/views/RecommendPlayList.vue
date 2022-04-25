@@ -21,7 +21,7 @@ export default {
 
     async function play(id){
         const {data: res} = await getSongUrl(id)
-        console.log(res[0].url)
+        //console.log(res[0].url)
         emitter.emit('transfer',res[0].url)
        
     }
