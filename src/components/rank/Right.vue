@@ -2,10 +2,12 @@
   <div class="container">
     <div class="topBox">
       <div class="left">
-        <img :src="data.coverImgUrl" alt="" />
+        <img :src="data.coverImgUrl" alt="" v-show="data.coverImgUrl"/>
       </div>
       <div class="right">
-        <div>{{ data.name }}</div>
+        <div>
+          <h2>{{ data.name }}</h2>
+        </div>
       </div>
     </div>
     <div class="bottomBox">
@@ -21,8 +23,13 @@
   </div>
 </template>
 <script>
+/**
+ * 
+ * @param {object} data 信息数据
+ * @function playMusic 播放音乐
+ */
 import { ref, reactive, onMounted, nextTick, watch, toRefs } from "vue";
-import {useRoute, onBeforeRouteUpdate} from 'vue-router'
+import { useRoute, onBeforeRouteUpdate } from "vue-router";
 import { getRankListDetail } from "@/api/http";
 import emitter from "@/utils/mitt";
 import { getSongUrl } from "@/api/http";
@@ -51,18 +58,9 @@ export default {
       },
       { immediate: true }
     );
-    onBeforeRouteUpdate((to)=>{
-      console.log(to.query.id)
-      getData(to.query.id)
-    })
-    /* watch(
-      route,
-      (newV, oldV) => {
-        /* newV.idVal && getData(newV.idVal);
-        console.log(newV)
-      },
-      { immediate: true }
-    ); */
+    onBeforeRouteUpdate((to) => {
+      getData(to.query.id);
+    });
     return {
       ...toRefs(topData),
       playMusic,
@@ -85,6 +83,16 @@ export default {
         height: 150px;
         border: 1px solid #cccccc;
         padding: 3px;
+      }
+    }
+    .right {
+      padding-top: 16px;
+      div {
+        h2 {
+          line-height: 24px;
+          font-size: 20px;
+          font-weight: normal;
+        }
       }
     }
   }

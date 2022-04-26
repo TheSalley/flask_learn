@@ -2,7 +2,7 @@
   <div class="container">
     <h3>{{ title }}</h3>
     <ul>
-      <li v-for="(item, index) in arr" :key="index" @click="changeRank(item.id)">
+      <li v-for="(item, index) in arr" :key="index" @click="changeRank(item.id, item.name)" :class="{'active': isActive == item.name}">
         <img :src="item.coverImgUrl" alt="" />
         <div>
           <span>{{ item.name }}</span>
@@ -19,8 +19,9 @@
  * @param {array} arr 排行榜名单数据
  * @function changeRank 转变排行榜内容事件 
  */
-import { ref, reactive, toRefs } from "vue";
+import { ref, reactive, toRefs, computed, toRaw } from "vue";
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 export default {
   name: "Aside",
   props: ["arr", "title"],
@@ -28,18 +29,25 @@ export default {
     const title = ref(props.title);
     const arr = reactive(props.arr);
     const router = useRouter();
-    function changeRank(id){
+    const store = useStore();
+
+    let isActive = computed(() => store.state.rankActive)
+    localStorage.setItem('rankActive', isActive.value)
+    function changeRank(id, name){
       router.push({
         path: '/discovery/toplist',
         query: {
           id
         }
       })
+      store.commit('changeRankActive', name)
+      localStorage.setItem('rankActive', isActive.value)
     }
     return {
       title,
       arr,
-      changeRank
+      changeRank,
+      isActive
     };
   },
 };
@@ -77,5 +85,8 @@ export default {
       color: #999;
     }
   }
+}
+.active {
+  background-color: #e6e6e6;
 }
 </style>
