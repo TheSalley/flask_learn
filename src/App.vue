@@ -3,17 +3,20 @@
     <NavHeader></NavHeader>
     <div class="mainBox">
       <router-view></router-view>
-    </div>   
-    <Footer></Footer>
+    </div> 
+    <Footer/>  
+    <AudioCom></AudioCom>
   </div>
 </template>
 <script>
 import NavHeader from '@/components/common/NavHeader.vue'
+import AudioCom from '@/components/common/AudioCom.vue'
 import Footer from '@/components/common/Footer.vue'
 export default {
   name: 'App',
   components: {
     NavHeader,
+    AudioCom,
     Footer
   }
 };

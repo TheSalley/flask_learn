@@ -5,17 +5,21 @@
         <img :src="b.imageUrl" alt />
       </el-carousel-item>
     </el-carousel>
+    <div class="downloadBox">
+      <p>PC 安卓 iPhone WP iPad Mac 六大客户端</p>
+    </div>
   </div>
 </template>
 <script>
 /**
- * @banners 轮播图列表
+ *
+ * @param { array } banners 轮播图列表
+ * @function getData 拉取轮播图数据
  */
 import { ref, reactive, toRefs, onMounted } from "vue";
 import { getBannerList } from "@/api/http";
 export default {
-  name: "Banner",
-  components: {},
+  name: "Bnaner",
   setup() {
     let banners = reactive([
       {
@@ -25,7 +29,8 @@ export default {
     ]);
     const getData = async () => {
       let { banners: res } = await getBannerList();
-      banners.push(...res.splice(1));
+      banners.push(...res);
+      banners.shift();
     };
     onMounted(() => {
       getData();
@@ -41,15 +46,36 @@ export default {
 <style lang="scss" scoped>
 .container {
   height: 285px;
+  width: 980px;
+  display: flex;
   .el-carousel {
-    width: 982px;
+    width: 730px;
     height: 285px;
     margin: 0 auto;
     img {
       display: block;
-      width: 780px;
+      width: 730px;
       height: 285px;
     }
+  }
+  .downloadBox {
+    width: 252px;
+    height: 285px;
+    background: url("~@/assets/download.png");
+    position: relative;
+    p {
+      color: #8d8d8d;
+      font-size: 12px;
+      text-align: center;
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+    }
+  }
+}
+.el-carousel {
+  ::v-deep .el-carousel__indicators {
+    width: 400px !important;
   }
 }
 </style>

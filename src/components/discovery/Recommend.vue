@@ -34,14 +34,14 @@ export default {
     float: left;
     font-size: 20px;
     font-weight: normal;
-    line-height: 33px;
+    line-height: 30px;
     &::before {
       content: "";
       position: absolute;
       left: 0px;
       width: 34px;
       height: 33px;
-      background: url("@/assets/index.png") no-repeat;
+      background: url("~@/assets/index.png") no-repeat;
       background-position: -225px -156px;
     }
   }
