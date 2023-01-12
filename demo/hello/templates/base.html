@@ -1,0 +1,57 @@
+{% from 'macros.html' import static_file %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block head %}
+      <title>
+        {% block title %}
+          Hello, Flask
+        {% endblock %}
+      </title>
+    {% endblock %}
+    {% block styles %}
+        {{ static_file('icon', 'favicon.ico') }}
+        {{ static_file('css', 'css/bootstrap.css') }}
+        <style>
+            .foo {
+                font-size: 32px;
+            }
+        </style>
+    {% endblock %}
+</head>
+<body>
+  <nav>
+     {# 直接在模板中定义变量  #}
+    {% set fruits = [('apple', 'banana'), ('pear', 'orange')] %}
+    {{ fruits[0][1] }}
+    {% set navigation %}
+      <ul>
+          <li>
+              <a href="{{ url_for('index') }}">index</a>
+          </li>
+          <li>
+              <a href="{{ url_for('watchlist') }}">watchlist</a>
+          </li>
+      </ul>
+    {% endset %}
+    {{ navigation }}
+  </nav>
+  <main>
+      {% for message in get_flashed_messages() %}
+      <div>{{ message }}</div>
+      {% endfor %}
+    {% block content %}
+    {% endblock %}
+  </main>
+  <footer>
+    {% block footer %}
+    {% endblock %}
+  </footer>
+  {%- block scripts -%}
+  {{ static_file('js', 'js/jquery.js') }}
+  {{ static_file('js', 'js/bootstrap.js') }}
+  {{ static_file('js', 'js/popper.js') }}
+  {%- endblock -%}
+</body>
+</html>
